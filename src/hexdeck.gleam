@@ -8,6 +8,7 @@ import gleam/list
 import gleam/option.{type Option}
 import gleam/pair
 import gleam/result
+import gleam/string
 import gleam/uri
 import lustre
 import lustre/attribute.{type Attribute}
@@ -132,6 +133,7 @@ fn update_query(order: List(Int), frames: Dict(Int, String)) -> Effect(msg) {
           list.filter_map(order, fn(key) {
             frames
             |> dict.get(key)
+            |> result.try(fn(param) { Ok(string.lowercase(param)) })
             |> result.map(pair.new(int.to_string(key), _))
           }),
         )
