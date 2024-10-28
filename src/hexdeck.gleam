@@ -216,6 +216,7 @@ fn view_embed_wrapper(
               ]),
               html.input([
                 attribute.class("bg-transparent flex-1"),
+                attribute.attribute("autocapitalize", "off"),
                 attribute.value(src),
               ]),
             ],
