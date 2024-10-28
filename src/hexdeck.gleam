@@ -8,9 +8,10 @@ import gleam/list
 import gleam/option.{type Option}
 import gleam/pair
 import gleam/result
+import gleam/string
 import gleam/uri
 import lustre
-import lustre/attribute.{type Attribute}
+import lustre/attribute.{type Attribute, attribute}
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -132,6 +133,7 @@ fn update_query(order: List(Int), frames: Dict(Int, String)) -> Effect(msg) {
           list.filter_map(order, fn(key) {
             frames
             |> dict.get(key)
+            |> result.map(string.lowercase)
             |> result.map(pair.new(int.to_string(key), _))
           }),
         )
@@ -214,6 +216,7 @@ fn view_embed_wrapper(
               ]),
               html.input([
                 attribute.class("bg-transparent flex-1"),
+                attribute("autocapitalize", "off"),
                 attribute.value(src),
               ]),
             ],
