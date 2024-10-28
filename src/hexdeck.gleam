@@ -11,7 +11,7 @@ import gleam/result
 import gleam/string
 import gleam/uri
 import lustre
-import lustre/attribute.{type Attribute}
+import lustre/attribute.{type Attribute, attribute}
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -216,7 +216,7 @@ fn view_embed_wrapper(
               ]),
               html.input([
                 attribute.class("bg-transparent flex-1"),
-                attribute.attribute("autocapitalize", "off"),
+                attribute("autocapitalize", "off"),
                 attribute.value(src),
               ]),
             ],
